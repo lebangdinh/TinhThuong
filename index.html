@@ -3,190 +3,101 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hệ thống tính thưởng Target Quản lý và Trưởng ca" />
-  <meta name="theme-color" content="#049bbd" />
-  <title>Hệ thống tính thưởng QL / Trưởng ca</title>
+  <meta name="theme-color" content="#0799b8" />
+  <title>Hệ thống tính thưởng HCH</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar card">
-      <div class="brand-wrap">
-        <div class="brand-icon" aria-hidden="true">▦</div>
-        <div>
-          <h1>Hệ Thống Tính Thưởng Target</h1>
-          <p><span id="periodLabel">T7.2026</span> · Quản lý &amp; Trưởng ca</p>
-        </div>
-      </div>
-      <div class="topbar-right">
-        <div class="live-status">
-          <span>TRẠNG THÁI</span>
-          <b><i></i> Live Data</b>
-        </div>
-        <button id="settingsBtn" class="brand-badge" title="Tùy chỉnh giao diện" aria-label="Tùy chỉnh giao diện">QL</button>
-      </div>
-    </header>
-
-    <section id="settingsPanel" class="settings-panel card" hidden>
+<div class="app-shell">
+  <header class="topbar card">
+    <div class="brand-wrap">
+      <div class="brand-icon" aria-hidden="true">▦</div>
       <div>
-        <label>Giao diện
-          <select id="themeSelect">
-            <option value="hch">HCH Cyan</option>
-            <option value="ocean">Xanh dương</option>
-            <option value="emerald">Xanh lá</option>
-            <option value="violet">Tím hiện đại</option>
-            <option value="dark">Tối</option>
-            <option value="minimal">Tối giản</option>
-          </select>
-        </label>
-        <label>Font chữ
-          <select id="fontSelect">
-            <option value="bevietnam">Be Vietnam Pro</option>
-            <option value="segoe">Segoe UI</option>
-            <option value="inter">Inter</option>
-            <option value="roboto">Roboto</option>
-            <option value="tahoma">Tahoma</option>
-            <option value="arial">Arial</option>
-          </select>
-        </label>
+        <h1>Hệ Thống Tính Thưởng QL / Trưởng Ca</h1>
+        <p>Kỳ tính: <span id="periodLabel">T7.2026</span></p>
       </div>
-      <button id="closeSettings" class="small-btn">Đóng</button>
+    </div>
+    <div class="topbar-right">
+      <div class="live-status"><span>TRẠNG THÁI</span><b>Live Data</b></div>
+      <button id="settingsBtn" class="brand-badge" title="Tùy chỉnh giao diện">HCH</button>
+    </div>
+  </header>
+
+  <section id="settingsPanel" class="settings-panel card" hidden>
+    <label>Giao diện<select id="themeSelect"><option value="hch">HCH Cyan</option><option value="ocean">Xanh dương</option><option value="emerald">Xanh lá</option><option value="violet">Tím</option><option value="dark">Tối</option><option value="minimal">Tối giản</option></select></label>
+    <label>Font chữ<select id="fontSelect"><option value="bevietnam">Be Vietnam Pro</option><option value="segoe">Segoe UI</option><option value="inter">Inter</option><option value="roboto">Roboto</option><option value="tahoma">Tahoma</option><option value="arial">Arial</option></select></label>
+    <button id="closeSettings" class="small-btn">Đóng</button>
+  </section>
+
+  <main>
+    <section class="kpi-grid">
+      <article class="kpi-card card revenue-card">
+        <div class="kpi-head">
+          <div class="kpi-title"><i></i><h2>QUỸ THƯỞNG QUẢN LÝ</h2></div>
+          <strong id="managerProgress">0,0% Hoàn thành</strong>
+        </div>
+        <label>DOANH THU QUY ĐỔI CỤM
+          <input id="revenue" class="input-target" type="number" min="0" step="1000000" value="10000000000" />
+        </label>
+        <label>% HT TARGET DOANH THU
+          <input id="revenueCompletion" class="input-actual" type="number" min="0" step="0.01" value="" placeholder="Nhập tỷ lệ hoàn thành" />
+        </label>
+        <div class="inline-fields">
+          <label>VÙNG BASE<select id="region"><option>V01</option><option selected>V02</option><option>V03</option><option>V04</option></select></label>
+          <label>SỐ SIÊU THỊ<select id="storeCount"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        </div>
+        <div class="milestone-row"><div><b>MỐC 100%</b><span id="rev100">ĐÃ ĐẠT</span></div><div><b>MỐC 120%</b><span id="rev120">ĐÃ ĐẠT</span></div><div><b>MỐC 150%</b><span id="rev150">ĐÃ ĐẠT</span></div></div>
+        <div class="pool-total"><span>TỔNG QUỸ THƯỞNG QL</span><b id="managerPool">0 VNĐ</b></div>
+      </article>
+
+      <article class="kpi-card card profit-card">
+        <div class="kpi-head">
+          <div class="kpi-title"><i></i><h2>QUỸ THƯỞNG TRƯỞNG CA</h2></div>
+          <strong id="shiftProgress">0,0% Hoàn thành</strong>
+        </div>
+        <label>% HT TARGET LNTT
+          <input id="profitCompletion" class="input-target" type="number" min="0" step="0.01" value="" placeholder="Nhập tỷ lệ hoàn thành" />
+        </label>
+        <label>SỐ SIÊU THỊ ĐẠT TARGET LNTT
+          <input id="profitStoreCount" class="input-actual" type="number" min="0" max="5" step="1" value="2" />
+        </label>
+        <div class="inline-fields">
+          <label>SAN SẺ CHIẾN GIÁ<input id="battleCost" type="number" min="0" step="1000" value="0" /></label>
+          <label>GIỜ NV ỦY QUYỀN<input id="delegatedHours" type="number" min="0" step="0.5" value="0" /></label>
+        </div>
+        <div class="milestone-row"><div><b>MỐC 100%</b><span id="profit100">ĐÃ ĐẠT</span></div><div><b>MỐC 120%</b><span id="profit120">ĐÃ ĐẠT</span></div><div><b>MỐC 140%</b><span id="profit140">ĐÃ ĐẠT</span></div></div>
+        <div class="pool-total"><span>TỔNG QUỸ THƯỞNG TC</span><b id="shiftPool">0 VNĐ</b></div>
+      </article>
     </section>
 
-    <main>
-      <section class="kpi-grid">
-        <article class="kpi-card card revenue-card">
-          <div class="kpi-head">
-            <div class="kpi-title"><i></i><h2>THƯỞNG QUẢN LÝ</h2></div>
-            <strong id="managerProgress">0,0% Hoàn thành</strong>
-          </div>
-          <label>MỤC TIÊU / DOANH THU QUY ĐỔI
-            <input id="revenue" class="input-target" type="number" min="0" step="1000000" value="10000000000" />
-          </label>
-          <label>% HT TARGET DOANH THU
-            <input id="revenueCompletion" class="input-actual" type="number" min="0" step="0.01" value="" placeholder="Nhập %, ví dụ 139" />
-          </label>
-          <div class="inline-fields">
-            <label>VÙNG BASE
-              <select id="region"><option>V01</option><option selected>V02</option><option>V03</option><option>V04</option></select>
-            </label>
-            <label>SỐ SIÊU THỊ
-              <select id="storeCount"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
-            </label>
-          </div>
-          <div class="milestone-row" aria-label="Mốc thưởng doanh thu">
-            <div><b>MỐC 100%</b><span id="rev100">—</span></div>
-            <div><b>MỐC 120%</b><span id="rev120">—</span></div>
-            <div><b>MỐC 150%</b><span id="rev150">—</span></div>
-          </div>
-          <div class="pool-total"><span>QUỸ THƯỞNG QL FINAL</span><b id="managerPool">0 ₫</b></div>
-        </article>
+    <div id="validation" class="validation" hidden></div>
 
-        <article class="kpi-card card profit-card">
-          <div class="kpi-head">
-            <div class="kpi-title"><i></i><h2>THƯỞNG TRƯỞNG CA</h2></div>
-            <strong id="shiftProgress">0,0% Hoàn thành</strong>
-          </div>
-          <label>% HT TARGET LNTT
-            <input id="profitCompletion" class="input-target" type="number" min="0" step="0.01" value="" placeholder="Nhập %, ví dụ 152" />
-          </label>
-          <label>SỐ SIÊU THỊ ĐẠT TARGET LNTT
-            <input id="profitStoreCount" class="input-actual" type="number" min="0" max="5" step="1" value="2" />
-          </label>
-          <div class="inline-fields">
-            <label>SAN SẺ CHIẾN GIÁ
-              <input id="battleCost" type="number" min="0" step="1000" value="0" />
-            </label>
-            <label>GIỜ NV ỦY QUYỀN
-              <input id="delegatedHours" type="number" min="0" step="0.5" value="0" />
-            </label>
-          </div>
-          <div class="milestone-row" aria-label="Mốc thưởng lợi nhuận">
-            <div><b>MỐC 100%</b><span id="profit100">—</span></div>
-            <div><b>MỐC 120%</b><span id="profit120">—</span></div>
-            <div><b>MỐC 140%</b><span id="profit140">—</span></div>
-          </div>
-          <div class="pool-total"><span>QUỸ THƯỞNG TC FINAL</span><b id="shiftPool">0 ₫</b></div>
-        </article>
-      </section>
+    <section class="section-banner">
+      <div><h2>Phân Phối Thưởng Nhân Viên</h2><p>Dựa trên hiệu suất và giờ công thực tế</p></div>
+      <div class="banner-actions"><label class="period-field">KỲ TÍNH<input id="period" type="text" value="T7.2026" /></label><button id="saveBtn" class="white-btn">↥ &nbsp; LƯU DỮ LIỆU</button></div>
+    </section>
 
-      <div id="validation" class="validation" hidden></div>
+    <section class="distribution card">
+      <div class="toolbar">
+        <div class="toolbar-left"><span id="saveStatus" class="save-status">Chưa lưu</span><label class="compact-field">Đơn giá NV ủy quyền<input id="delegatedRate" type="number" min="0" step="100" value="2000" /></label></div>
+        <div class="toolbar-actions"><button id="resetBtn" class="tool-btn muted">LÀM MỚI</button><button id="exportCsvBtn" class="tool-btn green">▦ XUẤT CSV</button><button id="printBtn" class="tool-btn red">▤ XUẤT PDF</button><button id="exportJsonBtn" class="tool-btn cyan">▧ SAO LƯU</button></div>
+      </div>
+      <div class="people-grid">
+        <div class="people-box"><div class="people-head"><h3>QUẢN LÝ</h3><button class="add-btn" data-add="manager">+ THÊM NGƯỜI</button></div><div class="table-head"><span>NHÂN VIÊN</span><span>GIỜ</span><span>THƯỞNG QL</span><span></span></div><div id="managerRows" class="people-rows"></div><div id="managerAllocation" class="allocation-list"></div></div>
+        <div class="people-box"><div class="people-head"><h3>TRƯỞNG CA</h3><button class="add-btn" data-add="shift">+ THÊM NGƯỜI</button></div><div class="table-head"><span>NHÂN VIÊN</span><span>GIỜ</span><span>THƯỞNG TC</span><span></span></div><div id="shiftRows" class="people-rows"></div><div id="shiftAllocation" class="allocation-list"></div></div>
+      </div>
+    </section>
 
-      <section class="section-banner">
-        <div>
-          <h2>Phân Phối Thưởng Nhân Viên</h2>
-          <p>Dựa trên giờ công thực tế và quỹ thưởng Final</p>
-        </div>
-        <div class="banner-actions">
-          <label class="period-field">KỲ TÍNH
-            <input id="period" type="text" value="T7.2026" />
-          </label>
-          <button id="saveBtn" class="white-btn">💾 LƯU DỮ LIỆU</button>
-        </div>
-      </section>
-
-      <section class="distribution card">
-        <div class="toolbar">
-          <div class="toolbar-left">
-            <span id="saveStatus" class="save-status">Chưa lưu</span>
-            <label class="compact-field">Đơn giá NV ủy quyền
-              <input id="delegatedRate" type="number" min="0" step="100" value="2000" />
-            </label>
-          </div>
-          <div class="toolbar-actions">
-            <button id="resetBtn" class="tool-btn muted">LÀM MỚI</button>
-            <button id="exportCsvBtn" class="tool-btn green">XUẤT CSV</button>
-            <button id="printBtn" class="tool-btn red">XUẤT PDF</button>
-            <button id="exportJsonBtn" class="tool-btn cyan">SAO LƯU JSON</button>
-          </div>
-        </div>
-
-        <div class="people-grid">
-          <div class="people-box">
-            <div class="people-head"><h3>QUẢN LÝ</h3><button class="add-btn" data-add="manager">+ THÊM NGƯỜI</button></div>
-            <div class="table-head"><span>NHÂN VIÊN</span><span>GIỜ</span><span>THƯỞNG</span><span></span></div>
-            <div id="managerRows" class="people-rows"></div>
-            <div id="managerAllocation" class="allocation-list"></div>
-          </div>
-          <div class="people-box">
-            <div class="people-head"><h3>TRƯỞNG CA</h3><button class="add-btn" data-add="shift">+ THÊM NGƯỜI</button></div>
-            <div class="table-head"><span>NHÂN VIÊN</span><span>GIỜ</span><span>THƯỞNG</span><span></span></div>
-            <div id="shiftRows" class="people-rows"></div>
-            <div id="shiftAllocation" class="allocation-list"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="detail-grid">
-        <article class="detail-card card">
-          <h3>THAM SỐ TÍNH THƯỞNG</h3>
-          <div class="detail-list">
-            <div><span>Hệ số vùng K1</span><b id="k1">—</b></div>
-            <div><span>Nhóm doanh thu</span><b id="revenueBand">—</b></div>
-            <div><span>Hệ số số lượng ST K2</span><b id="k2">—</b></div>
-            <div><span>Tỷ lệ thưởng doanh thu</span><b id="revenueRate">Chưa nhập</b></div>
-            <div><span>Tỷ lệ thưởng LNTT</span><b id="profitRate">Chưa nhập</b></div>
-            <div><span>Tỷ lệ thưởng quy mô</span><b id="scaleRate">—</b></div>
-          </div>
-        </article>
-        <article class="detail-card card">
-          <h3>GIÁ TRỊ TỔNG HỢP</h3>
-          <div class="detail-list">
-            <div><span>Thưởng chuẩn QL</span><b id="managerStandard">—</b></div>
-            <div><span>Thưởng chuẩn TC</span><b id="shiftStandard">—</b></div>
-            <div><span>Tổng chi phí siêu thị</span><b id="totalCost">—</b></div>
-            <div><span>Giờ công QL</span><b id="managerHourFactor">—</b></div>
-            <div><span>Giờ công TC</span><b id="shiftHourFactor">—</b></div>
-          </div>
-        </article>
-      </section>
-    </main>
-
-    <footer>Dữ liệu được lưu cục bộ trên trình duyệt của từng người dùng.</footer>
-  </div>
-  <script src="app.js"></script>
+    <section class="detail-grid">
+      <article class="detail-card card"><h3>THAM SỐ TÍNH THƯỞNG</h3><div class="detail-list"><div><span>Hệ số vùng K1</span><b id="k1">—</b></div><div><span>Nhóm doanh thu</span><b id="revenueBand">—</b></div><div><span>Hệ số số lượng ST K2</span><b id="k2">—</b></div><div><span>Tỷ lệ thưởng doanh thu</span><b id="revenueRate">Chưa nhập</b></div><div><span>Tỷ lệ thưởng LNTT</span><b id="profitRate">Chưa nhập</b></div><div><span>Tỷ lệ thưởng quy mô</span><b id="scaleRate">—</b></div></div></article>
+      <article class="detail-card card"><h3>GIÁ TRỊ TỔNG HỢP</h3><div class="detail-list"><div><span>Thưởng chuẩn QL</span><b id="managerStandard">—</b></div><div><span>Thưởng chuẩn TC</span><b id="shiftStandard">—</b></div><div><span>Tổng chi phí siêu thị</span><b id="totalCost">—</b></div><div><span>Giờ công QL</span><b id="managerHourFactor">—</b></div><div><span>Giờ công TC</span><b id="shiftHourFactor">—</b></div></div></article>
+    </section>
+  </main>
+  <footer>Dữ liệu được lưu cục bộ trên trình duyệt của từng người dùng.</footer>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
