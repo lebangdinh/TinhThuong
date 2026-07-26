@@ -39,15 +39,15 @@
         </div>
         <div class="grid inputs">
           <label>Kỳ tính thưởng<input id="period" value="" placeholder="Ví dụ: T7.2026"></label>
-          <label>Doanh thu quy đổi cụm (đ)<input id="revenue" type="number" min="0" step="1000000" value="0"></label>
+          <label>Doanh thu quy đổi cụm (đ)<input id="revenue" type="text" inputmode="numeric" data-format="integer" value="0" autocomplete="off"></label>
           <label>Vùng siêu thị Base<select id="region"><option value="" selected>Chọn vùng</option><option>V01</option><option>V02</option><option>V03</option><option>V04</option></select></label>
           <label>Số lượng siêu thị<select id="storeCount"><option value="0" selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
-          <label>Số ST đạt target LNTT<input id="storesHit" type="number" min="0" max="5" value="0"></label>
-          <label>% HT Target doanh thu<input id="revenuePct" type="number" min="0" step="0.1" value="0"><span>%</span></label>
-          <label>% HT Target LNTT<input id="profitPct" type="number" min="0" step="0.1" value="0"><span>%</span></label>
-          <label>San sẻ chiến giá (đ)<input id="priceSupport" type="number" min="0" step="1000" value="0"></label>
-          <label>Tổng giờ NV ủy quyền<input id="delegatedHours" type="number" min="0" step="0.5" value="0"></label>
-          <label>Đơn giá NV ủy quyền (đ/giờ)<input id="delegatedRate" type="number" min="0" step="100" value="0"></label>
+          <label>Số ST đạt target LNTT<input id="storesHit" type="text" inputmode="numeric" data-format="integer" value="0" autocomplete="off"></label>
+          <label>% HT Target doanh thu<input id="revenuePct" type="text" inputmode="decimal" data-format="decimal" value="0" autocomplete="off"><span>%</span></label>
+          <label>% HT Target LNTT<input id="profitPct" type="text" inputmode="decimal" data-format="decimal" value="0" autocomplete="off"><span>%</span></label>
+          <label>San sẻ chiến giá (đ)<input id="priceSupport" type="text" inputmode="numeric" data-format="integer" value="0" autocomplete="off"></label>
+          <label>Tổng giờ NV ủy quyền<input id="delegatedHours" type="text" inputmode="decimal" data-format="decimal" value="0" autocomplete="off"></label>
+          <label>Đơn giá NV ủy quyền (đ/giờ)<input type="text" value="2.000" disabled aria-label="Đơn giá NV ủy quyền cố định 2.000 đồng mỗi giờ"></label>
         </div>
       </section>
 
@@ -98,7 +98,7 @@
     <div class="card"><div class="card-header plain"><div><h2>Kết quả Trưởng ca</h2><p>Phân bổ theo tỷ trọng giờ công.</p></div></div><div class="table-wrap"><table><thead><tr><th>Họ tên / Vị trí</th><th>Giờ công</th><th>Tỷ trọng</th><th>Tiền thưởng</th></tr></thead><tbody id="leaderResults"></tbody></table></div></div>
   </section>
 
-  <section class="formula-box"><div class="formula-icon">i</div><div><h2>Công thức chính</h2><p><b>Quỹ Target</b> = Thưởng doanh thu + Thưởng LNTT + Thưởng quy mô LNTT. Riêng quỹ Quản lý trừ chi phí siêu thị. Quỹ Final được nhân với <code>min(Tổng giờ công / 180, 1)</code>, sau đó chia theo tỷ trọng giờ công.</p></div></section>
+  <section class="formula-box"><div class="formula-icon">i</div><div><h2>Công thức chính</h2><p><b>Quỹ Target</b> = Thưởng doanh thu + Thưởng LNTT + Thưởng quy mô LNTT. Riêng quỹ Quản lý trừ chi phí siêu thị. Quỹ Final = Quỹ Target × <code>min(Tổng giờ công / 180, 1)</code>, sau đó chia theo tỷ trọng giờ công. Đơn giá NV ủy quyền cố định 2.000 đ/giờ.</p></div></section>
 </main>
 
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span class="brand-mark small">₫</span><div><strong>Công cụ tính thưởng</strong><small>Quản lý &amp; Trưởng ca</small></div></div><p>© 2026 Công cụ tính thưởng · GitHub Pages</p><p class="privacy">Dữ liệu chỉ lưu trên trình duyệt của thiết bị này.</p></div></footer>
