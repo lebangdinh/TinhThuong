@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="ocean" data-font="modern">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,10 +15,34 @@
         <h1>Công cụ tính thưởng Target</h1>
         <p class="subtitle">Quản lý & Trưởng ca — nhập liệu trực tiếp, kết quả cập nhật tức thì.</p>
       </div>
-      <div class="hero-actions">
-        <button id="saveBtn" class="btn secondary">Lưu dữ liệu</button>
-        <button id="resetBtn" class="btn ghost">Khôi phục mẫu</button>
-        <button id="printBtn" class="btn primary">In / Xuất PDF</button>
+      <div class="hero-side">
+        <div class="appearance-box" aria-label="Tuỳ chỉnh giao diện">
+          <label>Giao diện
+            <select id="themeSelect">
+              <option value="ocean">Xanh dương</option>
+              <option value="emerald">Xanh lá</option>
+              <option value="sunset">Cam ấm</option>
+              <option value="violet">Tím hiện đại</option>
+              <option value="dark">Tối</option>
+              <option value="minimal">Tối giản</option>
+            </select>
+          </label>
+          <label>Font chữ
+            <select id="fontSelect">
+              <option value="modern">Hiện đại</option>
+              <option value="arial">Arial</option>
+              <option value="tahoma">Tahoma</option>
+              <option value="verdana">Verdana</option>
+              <option value="trebuchet">Trebuchet MS</option>
+              <option value="serif">Georgia</option>
+            </select>
+          </label>
+        </div>
+        <div class="hero-actions">
+          <button id="saveBtn" class="btn secondary">Lưu dữ liệu</button>
+          <button id="resetBtn" class="btn ghost">Làm mới dữ liệu</button>
+          <button id="printBtn" class="btn primary">In / Xuất PDF</button>
+        </div>
       </div>
     </div>
   </header>
@@ -28,7 +52,7 @@
       <div class="section-title">
         <div>
           <h2>1. Nhập thông tin cụm</h2>
-          <p>Những ô nền vàng là dữ liệu có thể thay đổi.</p>
+          <p>Hai ô % hoàn thành Target được để trống sẵn để người dùng nhập mới.</p>
         </div>
         <span class="status" id="saveStatus">Chưa lưu</span>
       </div>
@@ -39,8 +63,8 @@
         <label>Vùng siêu thị Base<select id="region"><option>V01</option><option selected>V02</option><option>V03</option><option>V04</option></select></label>
         <label>Số lượng siêu thị<select id="storeCount"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></label>
         <label>Số ST đạt target LNTT<input id="profitStoreCount" type="number" min="0" max="5" step="1" value="2" /></label>
-        <label>% HT Target doanh thu<input id="revenueCompletion" type="number" min="0" step="0.01" value="139" /><small>Ví dụ: nhập 139 cho 139%</small></label>
-        <label>% HT Target LNTT<input id="profitCompletion" type="number" min="0" step="0.01" value="152" /><small>Ví dụ: nhập 152 cho 152%</small></label>
+        <label>% HT Target doanh thu<input id="revenueCompletion" type="number" min="0" step="0.01" value="" placeholder="Nhập %, ví dụ 139" /><small>Để trống khi chưa có số liệu.</small></label>
+        <label>% HT Target LNTT<input id="profitCompletion" type="number" min="0" step="0.01" value="" placeholder="Nhập %, ví dụ 152" /><small>Để trống khi chưa có số liệu.</small></label>
         <label>San sẻ chiến giá (đ)<input id="battleCost" type="number" min="0" step="1000" value="0" /></label>
         <label>Tổng giờ NV ủy quyền<input id="delegatedHours" type="number" min="0" step="0.5" value="0" /></label>
         <label>Đơn giá NV ủy quyền (đ/giờ)<input id="delegatedRate" type="number" min="0" step="100" value="2000" /></label>
@@ -73,8 +97,8 @@
           <div><span>Hệ số vùng K1</span><b id="k1">—</b></div>
           <div><span>Nhóm doanh thu</span><b id="revenueBand">—</b></div>
           <div><span>Hệ số số lượng ST K2</span><b id="k2">—</b></div>
-          <div><span>Tỷ lệ thưởng doanh thu</span><b id="revenueRate">—</b></div>
-          <div><span>Tỷ lệ thưởng LNTT</span><b id="profitRate">—</b></div>
+          <div><span>Tỷ lệ thưởng doanh thu</span><b id="revenueRate">Chưa nhập</b></div>
+          <div><span>Tỷ lệ thưởng LNTT</span><b id="profitRate">Chưa nhập</b></div>
           <div><span>Tỷ lệ thưởng quy mô</span><b id="scaleRate">—</b></div>
           <div><span>Thưởng chuẩn QL</span><b id="managerStandard">—</b></div>
           <div><span>Thưởng chuẩn TC</span><b id="shiftStandard">—</b></div>
@@ -82,14 +106,8 @@
         </div>
       </details>
 
-      <div class="allocation-block">
-        <h3>Phân bổ thưởng QL</h3>
-        <div id="managerAllocation" class="allocation-list"></div>
-      </div>
-      <div class="allocation-block">
-        <h3>Phân bổ thưởng Trưởng ca</h3>
-        <div id="shiftAllocation" class="allocation-list"></div>
-      </div>
+      <div class="allocation-block"><h3>Phân bổ thưởng QL</h3><div id="managerAllocation" class="allocation-list"></div></div>
+      <div class="allocation-block"><h3>Phân bổ thưởng Trưởng ca</h3><div id="shiftAllocation" class="allocation-list"></div></div>
 
       <div class="export-row">
         <button id="exportJsonBtn" class="btn secondary full">Xuất dữ liệu JSON</button>
@@ -110,7 +128,7 @@
     </section>
   </main>
 
-  <footer><div class="container">Công cụ chạy hoàn toàn trên trình duyệt. Dữ liệu lưu trên thiết bị của người dùng.</div></footer>
+  <footer><div class="container">Công cụ chạy hoàn toàn trên trình duyệt. Dữ liệu và lựa chọn giao diện được lưu trên thiết bị của người dùng.</div></footer>
   <script src="app.js"></script>
 </body>
 </html>
