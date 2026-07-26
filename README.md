@@ -1,23 +1,14 @@
-# Công cụ tính thưởng Target QL / Trưởng ca
+# Công cụ tính thưởng QL / Trưởng ca
 
-Website tĩnh chạy trực tiếp trên GitHub Pages, chuyển đổi từ file Excel chính sách áp dụng từ T7.2026.
+Mở `index.html` để sử dụng hoặc đưa toàn bộ thư mục lên GitHub Pages.
 
-## Đăng lên GitHub Pages
+## Chế độ Realtime
 
-1. Tạo repository mới trên GitHub, ví dụ `tinh-thuong`.
-2. Tải ba file `index.html`, `style.css`, `app.js` và file `README.md` lên nhánh `main`.
-3. Vào **Settings → Pages**.
-4. Trong **Build and deployment**, chọn **Deploy from a branch**.
-5. Chọn nhánh `main`, thư mục `/ (root)`, rồi bấm **Save**.
-6. GitHub sẽ cung cấp địa chỉ dạng `https://ten-tai-khoan.github.io/tinh-thuong/`.
+Lũy kế ước tính = (Lũy kế chính thức × số tháng đã qua + Realtime tháng hiện tại) / tháng hiện tại.
 
-## Tính năng
+Công thức thưởng QL/TC giữ nguyên theo file Excel đối chiếu. Dữ liệu được lưu cục bộ trên trình duyệt.
 
-- Tính đúng hệ số K1 theo vùng và K2 theo doanh thu/số siêu thị.
-- Tính tỷ lệ thưởng doanh thu, LNTT, thưởng quy mô và chi phí siêu thị.
-- Phân bổ thưởng cho Quản lý và Trưởng ca theo giờ công.
-- Tự lưu dữ liệu trong trình duyệt.
-- Xuất CSV và in/lưu PDF.
-- Giao diện tương thích điện thoại và máy tính.
 
-Không cần máy chủ, cơ sở dữ liệu hay cài đặt thư viện.
+## Cập nhật
+- Mặc định bật chế độ dùng lũy kế ước tính Realtime để tính thưởng.
+- Giữ trường “Số ST đạt target LNTT” vì trường này tham gia tính tỷ lệ thưởng quy mô: `(số ST đạt - 1) × 5%`.
