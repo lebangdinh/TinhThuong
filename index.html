@@ -13,116 +13,95 @@
   <div class="header-inner">
     <a class="brand" href="#" aria-label="Trang đầu">
       <span class="brand-mark" aria-hidden="true">₫</span>
-      <span class="brand-copy">
-        <strong>CÔNG CỤ TÍNH THƯỞNG</strong>
-        <small>Quản lý &amp; Trưởng ca</small>
-      </span>
+      <span class="brand-copy"><strong>CÔNG CỤ TÍNH THƯỞNG</strong><small>Quản lý &amp; Trưởng ca</small></span>
     </a>
-    <div class="header-badge">Áp dụng từ T7.2026</div>
+    <div class="top-actions" aria-label="Thao tác">
+      <span class="header-badge">Biểu mẫu nhập liệu</span>
+      <button id="resetBtn" class="btn btn-ghost" type="button">Xóa dữ liệu</button>
+      <button id="exportBtn" class="btn btn-ghost" type="button">Xuất CSV</button>
+      <button id="printBtn" class="btn btn-white" type="button">In / PDF</button>
+    </div>
   </div>
 </header>
 
-<section class="page-heading">
-  <div class="page-heading-inner">
-    <div>
-      <p class="eyebrow">BẢNG TÍNH THƯỞNG NỘI BỘ</p>
-      <h1>Tính thưởng Target nhanh và chính xác</h1>
-      <p class="lead">Nhập số liệu cụm, giờ công của từng nhân sự và hệ thống sẽ tự động phân bổ tiền thưởng.</p>
-    </div>
-    <div class="actions" aria-label="Thao tác">
-      <button id="resetBtn" class="btn btn-light" type="button">Nhập lại</button>
-      <button id="exportBtn" class="btn btn-outline" type="button">Xuất CSV</button>
-      <button id="printBtn" class="btn btn-primary" type="button">In / Lưu PDF</button>
-    </div>
-  </div>
-</section>
-
 <main>
-  <section class="card">
-    <div class="card-header">
-      <div class="section-number">1</div>
-      <div><h2>Thông tin cụm</h2><p>Điền các chỉ số dùng để xác định quỹ thưởng.</p></div>
-    </div>
-    <div class="grid inputs">
-      <label>Kỳ tính thưởng<input id="period" value="T7.2026"></label>
-      <label>Doanh thu quy đổi cụm (đ)<input id="revenue" type="number" min="0" step="1000000" value="10000000000"></label>
-      <label>Vùng siêu thị Base<select id="region"><option>V01</option><option selected>V02</option><option>V03</option><option>V04</option></select></label>
-      <label>Số lượng siêu thị<select id="storeCount"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></label>
-      <label>Số ST đạt target LNTT<input id="storesHit" type="number" min="0" max="5" value="2"></label>
-      <label>% HT Target doanh thu<input id="revenuePct" type="number" min="0" step="0.1" value="139"><span>%</span></label>
-      <label>% HT Target LNTT<input id="profitPct" type="number" min="0" step="0.1" value="152"><span>%</span></label>
-      <label>San sẻ chiến giá (đ)<input id="priceSupport" type="number" min="0" step="1000" value="0"></label>
-      <label>Tổng giờ NV ủy quyền<input id="delegatedHours" type="number" min="0" step="0.5" value="0"></label>
-      <label>Đơn giá NV ủy quyền (đ/giờ)<input id="delegatedRate" type="number" min="0" step="100" value="2000"></label>
-    </div>
-  </section>
+  <div class="compact-heading">
+    <div><p class="eyebrow">BẢNG TÍNH THƯỞNG NỘI BỘ</p><h1>Tính thưởng Target nhanh và chính xác</h1></div>
+    <p class="lead">Nhập số liệu cụm và giờ công; quỹ thưởng cập nhật tức thời ở bên phải.</p>
+  </div>
 
-  <section class="people-grid">
-    <div class="card">
-      <div class="card-header compact">
-        <div class="section-number">2</div>
-        <div><h2>Danh sách Quản lý</h2><p>Nhập họ tên và tổng giờ công.</p></div>
-        <button data-add="manager" class="btn btn-add" type="button">+ Thêm</button>
+  <div class="workspace">
+    <div class="entry-column">
+      <section class="card input-card">
+        <div class="card-header">
+          <div class="section-number">1</div>
+          <div><h2>Thông tin cụm</h2><p>Điền các chỉ số dùng để xác định quỹ thưởng.</p></div>
+        </div>
+        <div class="grid inputs">
+          <label>Kỳ tính thưởng<input id="period" value="" placeholder="Ví dụ: T7.2026"></label>
+          <label>Doanh thu quy đổi cụm (đ)<input id="revenue" type="number" min="0" step="1000000" value="0"></label>
+          <label>Vùng siêu thị Base<select id="region"><option value="" selected>Chọn vùng</option><option>V01</option><option>V02</option><option>V03</option><option>V04</option></select></label>
+          <label>Số lượng siêu thị<select id="storeCount"><option value="0" selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+          <label>Số ST đạt target LNTT<input id="storesHit" type="number" min="0" max="5" value="0"></label>
+          <label>% HT Target doanh thu<input id="revenuePct" type="number" min="0" step="0.1" value="0"><span>%</span></label>
+          <label>% HT Target LNTT<input id="profitPct" type="number" min="0" step="0.1" value="0"><span>%</span></label>
+          <label>San sẻ chiến giá (đ)<input id="priceSupport" type="number" min="0" step="1000" value="0"></label>
+          <label>Tổng giờ NV ủy quyền<input id="delegatedHours" type="number" min="0" step="0.5" value="0"></label>
+          <label>Đơn giá NV ủy quyền (đ/giờ)<input id="delegatedRate" type="number" min="0" step="100" value="0"></label>
+        </div>
+      </section>
+
+      <section class="people-grid">
+        <div class="card people-card">
+          <div class="card-header compact">
+            <div class="section-number">2</div>
+            <div><h2>Danh sách Quản lý</h2><p>Họ tên và tổng giờ công.</p></div>
+            <button data-add="manager" class="btn btn-add" type="button">+ Thêm</button>
+          </div>
+          <div class="row-labels"><span>Họ tên / Vị trí</span><span>Giờ công</span><span></span></div>
+          <div id="managerRows" class="people-rows"></div>
+        </div>
+        <div class="card people-card">
+          <div class="card-header compact">
+            <div class="section-number">3</div>
+            <div><h2>Danh sách Trưởng ca</h2><p>Họ tên và tổng giờ công.</p></div>
+            <button data-add="leader" class="btn btn-add" type="button">+ Thêm</button>
+          </div>
+          <div class="row-labels"><span>Họ tên / Vị trí</span><span>Giờ công</span><span></span></div>
+          <div id="leaderRows" class="people-rows"></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="summary-section" aria-live="polite">
+      <div class="summary-title">
+        <div><p class="eyebrow">KẾT QUẢ TỔNG QUAN</p><h2>Quỹ thưởng tự động</h2></div>
+        <span class="live-dot"><i></i> Trực tiếp</span>
       </div>
-      <div class="row-labels"><span>Họ tên / Vị trí</span><span>Giờ công</span><span></span></div>
-      <div id="managerRows"></div>
-    </div>
-    <div class="card">
-      <div class="card-header compact">
-        <div class="section-number">3</div>
-        <div><h2>Danh sách Trưởng ca</h2><p>Nhập họ tên và tổng giờ công.</p></div>
-        <button data-add="leader" class="btn btn-add" type="button">+ Thêm</button>
+      <div class="summary-grid">
+        <article class="metric featured"><span>Quỹ Quản lý</span><strong id="managerFund">0 đ</strong><small id="managerHours">0 giờ công</small></article>
+        <article class="metric featured"><span>Quỹ Trưởng ca</span><strong id="leaderFund">0 đ</strong><small id="leaderHours">0 giờ công</small></article>
+        <article class="metric"><span>Tỷ lệ thưởng DT</span><strong id="revRate">0%</strong><small>Min 50% · Max 200%</small></article>
+        <article class="metric"><span>Tỷ lệ thưởng LNTT</span><strong id="profitRate">0%</strong><small>Min 50% · Max 200%</small></article>
       </div>
-      <div class="row-labels"><span>Họ tên / Vị trí</span><span>Giờ công</span><span></span></div>
-      <div id="leaderRows"></div>
-    </div>
-  </section>
+      <div class="summary-note">Kết quả thay đổi ngay khi anh nhập số liệu hoặc giờ công.</div>
+    </aside>
+  </div>
 
-  <section class="summary-section">
-    <div class="summary-title">
-      <div><p class="eyebrow">KẾT QUẢ TỔNG QUAN</p><h2>Quỹ thưởng được tính tự động</h2></div>
-      <span class="live-dot"><i></i> Đang cập nhật</span>
-    </div>
-    <div class="summary-grid">
-      <article class="metric featured"><span>Quỹ QL Final</span><strong id="managerFund">0 đ</strong><small id="managerHours">0 giờ công</small></article>
-      <article class="metric featured"><span>Quỹ TC Final</span><strong id="leaderFund">0 đ</strong><small id="leaderHours">0 giờ công</small></article>
-      <article class="metric"><span>Tỷ lệ thưởng DT</span><strong id="revRate">0%</strong><small>Min 50% · Max 200%</small></article>
-      <article class="metric"><span>Tỷ lệ thưởng LNTT</span><strong id="profitRate">0%</strong><small>Min 50% · Max 200%</small></article>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="card-header">
-      <div class="section-number">4</div>
-      <div><h2>Chi tiết tính thưởng</h2><p>Các hệ số và giá trị trung gian theo chính sách.</p></div>
-    </div>
+  <section class="card lower-card">
+    <div class="card-header"><div class="section-number">4</div><div><h2>Chi tiết tính thưởng</h2><p>Các hệ số và giá trị trung gian theo chính sách.</p></div></div>
     <div class="detail-grid" id="details"></div>
   </section>
 
   <section class="people-grid results-grid">
-    <div class="card">
-      <div class="card-header plain"><div><h2>Kết quả Quản lý</h2><p>Phân bổ theo tỷ trọng giờ công.</p></div></div>
-      <div class="table-wrap"><table><thead><tr><th>Họ tên / Vị trí</th><th>Giờ công</th><th>Tỷ trọng</th><th>Tiền thưởng</th></tr></thead><tbody id="managerResults"></tbody></table></div>
-    </div>
-    <div class="card">
-      <div class="card-header plain"><div><h2>Kết quả Trưởng ca</h2><p>Phân bổ theo tỷ trọng giờ công.</p></div></div>
-      <div class="table-wrap"><table><thead><tr><th>Họ tên / Vị trí</th><th>Giờ công</th><th>Tỷ trọng</th><th>Tiền thưởng</th></tr></thead><tbody id="leaderResults"></tbody></table></div>
-    </div>
+    <div class="card"><div class="card-header plain"><div><h2>Kết quả Quản lý</h2><p>Phân bổ theo tỷ trọng giờ công.</p></div></div><div class="table-wrap"><table><thead><tr><th>Họ tên / Vị trí</th><th>Giờ công</th><th>Tỷ trọng</th><th>Tiền thưởng</th></tr></thead><tbody id="managerResults"></tbody></table></div></div>
+    <div class="card"><div class="card-header plain"><div><h2>Kết quả Trưởng ca</h2><p>Phân bổ theo tỷ trọng giờ công.</p></div></div><div class="table-wrap"><table><thead><tr><th>Họ tên / Vị trí</th><th>Giờ công</th><th>Tỷ trọng</th><th>Tiền thưởng</th></tr></thead><tbody id="leaderResults"></tbody></table></div></div>
   </section>
 
-  <section class="formula-box">
-    <div class="formula-icon">i</div>
-    <div><h2>Công thức chính</h2><p><b>Quỹ Target</b> = Thưởng doanh thu + Thưởng LNTT + Thưởng quy mô LNTT. Riêng quỹ Quản lý trừ chi phí siêu thị. Quỹ Final được nhân với <code>min(Tổng giờ công / 180, 1)</code>, sau đó chia cho từng người theo tỷ trọng giờ công.</p></div>
-  </section>
+  <section class="formula-box"><div class="formula-icon">i</div><div><h2>Công thức chính</h2><p><b>Quỹ Target</b> = Thưởng doanh thu + Thưởng LNTT + Thưởng quy mô LNTT. Riêng quỹ Quản lý trừ chi phí siêu thị. Quỹ Final được nhân với <code>min(Tổng giờ công / 180, 1)</code>, sau đó chia theo tỷ trọng giờ công.</p></div></section>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand"><span class="brand-mark small">₫</span><div><strong>Công cụ tính thưởng</strong><small>Quản lý &amp; Trưởng ca</small></div></div>
-    <p>© 2026 Công cụ tính thưởng · Phiên bản GitHub Pages</p>
-    <p class="privacy">Dữ liệu chỉ được lưu trên trình duyệt của thiết bị này.</p>
-  </div>
-</footer>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span class="brand-mark small">₫</span><div><strong>Công cụ tính thưởng</strong><small>Quản lý &amp; Trưởng ca</small></div></div><p>© 2026 Công cụ tính thưởng · GitHub Pages</p><p class="privacy">Dữ liệu chỉ lưu trên trình duyệt của thiết bị này.</p></div></footer>
 <script src="app.js"></script>
 </body>
 </html>
